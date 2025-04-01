@@ -54,31 +54,11 @@ def get_X(images, verbose=False):
     y_size = int(np.median(y_size))
     target_size = (x_size, y_size)
 
-    # Create a temporary file to store the processed images
-    temp_file = tempfile.NamedTemporaryFile(delete=False)
-    temp_file.close()
-
-    # Calculate the size of each image array
-    processed_imgs_shape = (len(images), target_size[1], target_size[0], 3)  # Assuming RGB images
-    img_size = target_size[0] * target_size[1] * 3 * np.float32().itemsize
-    
-    # Memory-map the file for storing the processed images
-    with open(temp_file.name, 'wb') as f:
-        f.truncate(len(images) * img_size)
-
-    processed_imgs = np.memmap(temp_file.name, dtype=np.float32, mode='r+', shape=processed_imgs_shape)
-
-    for i, img in enumerate(images):
+    processed_imgs = []
+    for img in images:
         processed_img = img.resize(target_size, resample=Image.LANCZOS)
-        processed_img = np.array(processed_img).astype(np.float32) / 255  # Norm.alize
-        processed_imgs[i] = processed_img
+        processed_img = np.array(processed_img).astype(np.float32) / 255.0  # Normalize
+        processed_imgs.append(processed_img)
 
-    # Flush changes to the memory-mapped file and close it
-    processed_imgs.flush()
-    del processed_imgs
-
-    # Delete the temporary file
-    os.remove(temp_file.name)
-
-    return processed_imgs_shape
+    return processed_imgs
 
