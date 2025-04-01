@@ -7,6 +7,7 @@ import numpy as np
 from PIL import Image
 import tempfile
 import mmap
+import pickle
 
 def _import_images(image_paths) -> list[Image]:
     images = []
@@ -69,16 +70,11 @@ def get_X(images, verbose=False):
     processed_imgs = np.memmap(temp_file.name, dtype=np.float32, mode='r+', shape=processed_imgs_shape)
 
     for i, img in enumerate(images):
+        print(img.shape)
         processed_img = img.resize(target_size, resample=Image.LANCZOS)
-        processed_img = np.array(processed_img).astype(np.float32) / 255  # Norm.alize
+        processed_img = np.array(processed_img).astype(np.float32)
+        processed_img = processed_img / 255.0
         processed_imgs[i] = processed_img
 
-    # Flush changes to the memory-mapped file and close it
-    processed_imgs.flush()
-    del processed_imgs
-
-    # Delete the temporary file
-    os.remove(temp_file.name)
-
-    return processed_imgs_shape
+    return processed_imgs
 
