@@ -12,6 +12,12 @@ import mmap
 from sklearn.preprocessing import OneHotEncoder
 from imblearn.under_sampling import RandomUnderSampler
 
+# encoded column names NOTE: if not run, its the default assumption
+encoded_y_cols = [
+    "battery", "biological", "brown-glass", "cardboard", "clothes",
+    "green-glass", "metal", "paper", "plastic", "shoes", "trash", "white-glass"
+]
+
 def get_X_y(percent=1, undersample=True, random_state=42, path=None, encoded_y=True, target_size=(150, 150)):
     # Download the dataset if not already
     if path is None:
@@ -52,6 +58,8 @@ def get_X_y(percent=1, undersample=True, random_state=42, path=None, encoded_y=T
         encoder = OneHotEncoder(sparse_output=False)
         y = encoder.fit_transform(y.values.reshape(-1, 1))
         columns = [names.split("_")[-1] for names in encoder.get_feature_names_out()]
+        global encoded_y_cols
+        encoded_y_cols = columns
         y = pd.DataFrame(y, columns=columns)
 
     return X, y
@@ -74,4 +82,15 @@ def get_X(image_paths, target_size=(150, 150)):
 
     return np.array(processed_imgs), errors
 
+def get_prediction(model=None, image_path=None, target_size=(150, 150)):
+    if model is None:
+        raise ValueError("Model must be provided for prediction.")
+    if image_path is None:
+        raise ValueError("Image path must be provided for prediction.")
 
+    X_input = get_X([image_path], target_size=target_size)
+    output = model.predict(X_input)
+    predicted_class = np.argmax(output[0])
+    global encoded_y_cols
+
+    return encoded_y_cols[predicted_class]
