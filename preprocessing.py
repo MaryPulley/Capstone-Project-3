@@ -8,21 +8,16 @@ from PIL import Image
 import tempfile
 import mmap
 
-def _import_images(image_paths) -> list[Image]:
-    images = []
-    errors = []
-    for image_path in image_paths:
-        try:
-            images.append(Image.open(image_path))
-        except Exception as e:
-            errors.append(f'FAILED to open image: {image_path}, Error: {e}')
 
-    return images, errors
+from sklearn.preprocessing import OneHotEncoder
+from imblearn.under_sampling import RandomUnderSampler
 
-def get_images_and_df():
-    """function that gets the X variable in the proper format from the datset"""
+def get_X_y(percent=1, undersample=True, random_state=42, path=None, encoded_y=True, target_size=(150, 150)):
+    # Download the dataset if not already
+    if path is None:
+        path = kh.dataset_download("mostafaabla/garbage-classification")
 
-    path = kh.dataset_download("mostafaabla/garbage-classification")
+    # create the dataframe
     file_dict = {"file_names": [], "file_paths": [], "classification": []}
     for root, _, files in os.walk(path):
         for file in files:
@@ -32,33 +27,51 @@ def get_images_and_df():
             classification = ''.join([char for char in file if not char.isdigit()])
             classification = classification.split(".")[0]
             file_dict["classification"].append(classification)
-
     df = pd.DataFrame(file_dict)
+    
+    # get random sample of size based on percent
+    if percent < 1:
+        df = df.sample(n=int(len(df) * percent), random_state=random_state)
 
-    images, errors = _import_images(df["file_paths"])
+    # undersample if necessary
+    if undersample:
+        sampler = RandomUnderSampler(random_state=random_state)
+        X = df.drop(columns=["classification"])
+        y = df["classification"]
+        X, y = sampler.fit_resample(X, y)
 
 
+    # convert file paths to numpy arrays representing images
+    X, errors = get_X(X["file_paths"].values, target_size=target_size)
+    if errors:
+        for error in errors:
+            print(error)
 
-    return images, df
+    # dummy encode y
+    if encoded_y:
+        encoder = OneHotEncoder(sparse_output=False)
+        y = encoder.fit_transform(y.values.reshape(-1, 1))
+        columns = [names.split("_")[-1] for names in encoder.get_feature_names_out()]
+        y = pd.DataFrame(y, columns=columns)
 
-def get_X(images, verbose=False):
+    return X, y
+
+def get_X(image_paths, target_size=(150, 150)):
     """function that gets the X variable in the proper format given a set of unprocessed images"""
 
-    
-    sizes = set([img.size for img in images])
-    x_size = [shape[0] for shape in sizes]
-    y_size = [shape[1] for shape in sizes]
-
-    # get the median x and y size
-    x_size = int(np.median(x_size))
-    y_size = int(np.median(y_size))
-    target_size = (x_size, y_size)
-
     processed_imgs = []
-    for img in images:
-        processed_img = img.resize(target_size, resample=Image.LANCZOS)
-        processed_img = np.array(processed_img).astype(np.float32) / 255.0  # Normalize
-        processed_imgs.append(processed_img)
+    errors = []
+    for image_path in image_paths:
+        try:
+            img = Image.open(image_path)
+            if img.mode != 'RGB':
+                img = img.convert('RGB')
+            img = img.resize(target_size, resample=Image.LANCZOS)
+            img = np.array(img).astype(np.float32) / 255.0  # Normalize
+            processed_imgs.append(img)
+        except Exception as e:
+            errors.append(f'FAILED to open image: {image_path}, Error: {e}')
 
-    return processed_imgs
+    return np.array(processed_imgs), errors
+
 
