@@ -115,7 +115,7 @@ def get_X(image_paths, target_size=(150, 150), grayscale=True):
 
     return np.array(processed_imgs), errors
 
-def get_prediction(model=None, image_path=None, target_size=(150, 150)) -> str:
+def get_prediction(image_path=None, model=None, target_size=(150, 150)) -> str:
     """function that gets the predicted class for a given image
     Args:
         model (keras model): trained model. Default is None, which will load the initial model from the pickle file.
