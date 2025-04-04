@@ -1,5 +1,6 @@
 # downloading a dataset from Kaggle using kagglehub
 import pandas as pd
+import pickle as pkl
 import os
 import kagglehub as kh # REQUIRED INSTALLATION
 import numpy as np
@@ -83,6 +84,10 @@ def get_X(image_paths, target_size=(150, 150)):
     return np.array(processed_imgs), errors
 
 def get_prediction(model=None, image_path=None, target_size=(150, 150)):
+    if model is None:
+        with open("initial_model.pkl", "rb") as f:
+            model = pkl.load(f)
+
     if model is None:
         raise ValueError("Model must be provided for prediction.")
     if image_path is None:
