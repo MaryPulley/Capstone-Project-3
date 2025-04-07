@@ -8,6 +8,9 @@ TA- Rimi Sharma
 
 This project aims to develop an image classification model using a convolutional neural network (CNN) architecture to determine whether an object is recyclable. The model classifies images into one of 12 categories, each corresponding to a type of recyclable material. By leveraging machine learning and computer vision, this project provides users with a quick decision-making tool to promote recycling.
 
+## Instructions to Download
+
+## Instructions to Run Code
 
 ## Data Preprocessing
 
