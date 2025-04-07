@@ -9,6 +9,15 @@ TA- Rimi Sharma
 This project aims to develop an image classification model using a convolutional neural network (CNN) architecture to determine whether an object is recyclable. The model classifies images into one of 12 categories, each corresponding to a type of recyclable material. By leveraging machine learning and computer vision, this project provides users with a quick decision-making tool to promote recycling.
 
 
+## Package Install
+
+pip install tensorflow
+pip install keras
+pip install Pillow
+pip install request
+pip install Gradio
+
+
 ## Data Preprocessing
 
 1. **Data Collection:** Gather a dataset of images containing various types of garbage, labeled as "recyclable" or "garbage". You can use public datasets or create your own by taking pictures of different waste items.
