@@ -15,11 +15,11 @@ This project aims to develop an image classification model using a convolutional
 ***To use User Interface Application - "Waste Classifier App"***
 Download the following files to utilize with the ***UI_code_final.ipynb notebook***
 
-garbage_classification.csv
+1. garbage_classification.csv
 
-garbage_recycle_model.pkl
+2. garbage_recycle_model.pkl
 
-preprocessing.py
+3. preprocessing.py
 
 
 
