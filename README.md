@@ -4,6 +4,9 @@
 Asa Adomatis, Mary Pulley, Vikram Borra, Sophak So, Katie Craig
 TA- Rimi Sharma
 
+![image](https://github.com/user-attachments/assets/ab6769bd-7fae-4531-800b-ddf63dbe967e)
+
+
 ## Overview
 
 This project aims to develop an image classification model using a convolutional neural network (CNN) architecture to determine whether an object is recyclable. The model classifies images into one of 8 categories, each corresponding to a type of recyclable material. By leveraging machine learning and computer vision, this project provides users with a quick decision-making tool to promote recycling.
@@ -46,7 +49,10 @@ This dataset contains images of various types of garbage, such as paper, plastic
 ## Model Selection
 
 - **Convolutional Neural Networks (CNNs):** CNNs are widely used for image classification tasks and have proven to be effective in identifying patterns and features in images. Pre-trained models like ResNet, Inception, or MobileNet can be used as a starting point or fine-tuned for this specific task.
-- Specific  CNN Model (Sequential model): Is the model we used with multiple convolutional layers, pooling layers, and fully connected layers.  The model is trained using the Adam optimizer and categorical cross-entropy loss function. 
+- Specific  CNN Model (Sequential model): Is the model we used with multiple convolutional layers, pooling layers, and fully connected layers.  The model is trained using the Adam optimizer and categorical cross-entropy loss function.
+
+![image](https://github.com/user-attachments/assets/c611349b-0058-4803-8da0-32ea5bcf877b)
+
 
 
 ## Model Training
@@ -56,11 +62,16 @@ This dataset contains images of various types of garbage, such as paper, plastic
 3. **Training:** Train the model on the training dataset using an optimizer (e.g., Adam, SGD) and a loss function (e.g., categorical cross-entropy). Monitor the training progress and adjust hyperparameters as needed.
 4. **Validation:** Evaluate the model's performance on the validation set during training to prevent overfitting and ensure generalization.
 
+![image](https://github.com/user-attachments/assets/55acf8e1-13bc-42d1-91a5-509c5efb3861)
+
+
 ## Model Testing
 
 1. **Evaluation:** Evaluate the trained model on the testing dataset to assess its performance on unseen data.
 2. **Metrics:** Use appropriate metrics like accuracy, precision, recall, and F1-score to measure the model's performance.
 3. **Analysis:** Analyze the results and identify areas for improvement.
+
+![image](https://github.com/user-attachments/assets/5daad6e9-e863-45ab-8888-9f354e105578)
 
 ## Usage
 
