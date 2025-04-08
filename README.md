@@ -6,30 +6,38 @@ TA- Rimi Sharma
 
 ## Overview
 
-This project aims to develop an image classification model using a convolutional neural network (CNN) architecture to determine whether an object is recyclable. The model classifies images into one of 12 categories, each corresponding to a type of recyclable material. By leveraging machine learning and computer vision, this project provides users with a quick decision-making tool to promote recycling.
+This project aims to develop an image classification model using a convolutional neural network (CNN) architecture to determine whether an object is recyclable. The model classifies images into one of 8 categories, each corresponding to a type of recyclable material. By leveraging machine learning and computer vision, this project provides users with a quick decision-making tool to promote recycling.
 
 
 ## Package Install
 
-pip install tensorflow
-pip install keras
-pip install Pillow
-pip install request
-pip install Gradio
+1. bash pip install tensorflow
+2. pip install pandas
+3. pip install Pillow
+4. pip install scikit-learn
+5. pip install kagglehub
 
+
+## Dataset
+
+The dataset used for training and evaluation is the "Garbage Classification" dataset available on Kaggle:
+
+**Dataset source:** [https://www.kaggle.com/datasets/mostafaabla/garbage-classification/data](https://www.kaggle.com/datasets/mostafaabla/garbage-classification/data)
+
+This dataset contains images of various types of garbage, such as paper, plastic, glass, metal, and cardboard. The images are labeled with their corresponding garbage categories.
 
 ## Data Preprocessing
 
 1. **Data Collection:** Gather a dataset of images containing various types of garbage, labeled as "recyclable" or "garbage". You can use public datasets or create your own by taking pictures of different waste items.
-2. **Data Cleaning:** Remove irrelevant images or data points from the dataset. Ensure that the images are of good quality and clearly depict the garbage items. 
-3. **Data Augmentation:** Apply data augmentation techniques (e.g., rotation, flipping, scaling) resized (*****)
+2. **Data Cleaning:** Initially, the dataset classified the data into 12 categories.  However, we found it more effcient to reduce the number of categories to 8 by combining a few that were closely related. 
+3. **Data Augmentation:** Apply data augmentation techniques (e.g., rotation, flipping, scaling) 
 4. **Data Splitting:** Divide the dataset into training, validation, and testing sets. This allows for proper model evaluation and prevents overfitting.
 
 ## Model Selection
 
 - **Convolutional Neural Networks (CNNs):** CNNs are widely used for image classification tasks and have proven to be effective in identifying patterns and features in images. Pre-trained models like ResNet, Inception, or MobileNet can be used as a starting point or fine-tuned for this specific task.
-- **Support Vector Machines (SVMs):** SVMs can be used for image classification by extracting features from the images and then training a classifier on those features.
-- **Other Models:** Explore other classification models like Random Forests or K-Nearest Neighbors if desired.
+- Specific  CNN Model (Sequential model): Is the model we used with multiple convolutional layers, pooling layers, and fully connected layers.  The model is trained using the Adam optimizer and categorical cross-entropy loss function. 
+
 
 ## Model Training
 
@@ -43,6 +51,13 @@ pip install Gradio
 1. **Evaluation:** Evaluate the trained model on the testing dataset to assess its performance on unseen data.
 2. **Metrics:** Use appropriate metrics like accuracy, precision, recall, and F1-score to measure the model's performance.
 3. **Analysis:** Analyze the results and identify areas for improvement.
+
+## Usage
+
+1. Download the dataset from the link above.
+2. Install the required packages.
+3. Run the code to train the model.
+4. Use the link to gradio (UI_code_final.ipynb) 
 
 ## Deployment
 
