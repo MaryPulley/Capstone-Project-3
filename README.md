@@ -28,6 +28,8 @@ Folder EXAMPLE IMAGES
 3. pip install Pillow
 4. pip install scikit-learn
 5. pip install kagglehub
+6. pip install imblearn (imbalanced-learn)
+7. pip install gdown
 
 ## Dataset
 
