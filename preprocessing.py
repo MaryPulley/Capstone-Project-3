@@ -141,7 +141,7 @@ def get_prediction(image_path=None, model=None, target_size=(150, 150)) -> str:
                 file_id = "1nTuoMsB36cNLTOUHeHmDjbshVixsWZDs"
                 url = f'https://drive.google.com/uc?id={file_id}'
                 gdown.download(url, default_model_path, quiet=False)
-                with open(output, "rb") as f:
+                with open(default_model_path, "rb") as f:
                     model = pkl.load(f)
             
         # if cant download better model, load the initial (worse) model
