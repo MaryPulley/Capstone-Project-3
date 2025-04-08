@@ -21,6 +21,8 @@ Download the following files to utilize with the ***UI_code_final.ipynb notebook
 
 3. preprocessing.py
 
+4. Folder EXAMPLE IMAGES
+
 
 
 ## Data Preprocessing
