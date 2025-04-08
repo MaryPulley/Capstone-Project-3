@@ -9,6 +9,17 @@ TA- Rimi Sharma
 This project aims to develop an image classification model using a convolutional neural network (CNN) architecture to determine whether an object is recyclable. The model classifies images into one of 8 categories, each corresponding to a type of recyclable material. By leveraging machine learning and computer vision, this project provides users with a quick decision-making tool to promote recycling.
 
 
+## Instructions to Run Code
+To use User Interface Application - "Waste Classifier App" Download the following files to utilize with the UI_code_final.ipynb notebook
+
+garbage_classification.csv
+
+garbage_recycle_model.pkl
+
+preprocessing.py
+
+Folder EXAMPLE IMAGES
+
 ## Package Install
 
 1. bash pip install tensorflow
@@ -16,7 +27,6 @@ This project aims to develop an image classification model using a convolutional
 3. pip install Pillow
 4. pip install scikit-learn
 5. pip install kagglehub
-
 
 ## Dataset
 
