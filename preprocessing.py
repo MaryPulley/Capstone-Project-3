@@ -125,7 +125,7 @@ def get_prediction(image_path=None, model=None, target_size=(150, 150)) -> str:
         str: predicted class for the image.
     """
     if model is None:
-        with open("initial_model.pkl", "rb") as f:
+        with open("garbage_recycle_model.pkl", "rb") as f:
             model = pkl.load(f)
 
     if model is None:
@@ -133,7 +133,7 @@ def get_prediction(image_path=None, model=None, target_size=(150, 150)) -> str:
     if image_path is None:
         raise ValueError("Image path must be provided for prediction.")
 
-    X_input = get_X([image_path], target_size=target_size)
+    X_input = get_X([image_path], target_size=target_size, grayscale=False)
     output = model.predict(X_input)
     predicted_class = np.argmax(output[0])
     global encoded_y_cols
