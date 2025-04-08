@@ -12,6 +12,15 @@ This project aims to develop an image classification model using a convolutional
 
 ## Instructions to Run Code
 
+To use User Interface Application - "Waste Classifier App"
+Download the following files to utilize with the ***UI_code_final.ipynb notebook***
+
+garbage_classification.csv
+garbage_recycle_model.pkl
+preprocessing.py
+
+
+
 ## Data Preprocessing
 
 1. **Data Collection:** Gather a dataset of images containing various types of garbage, labeled as "recyclable" or "garbage". You can use public datasets or create your own by taking pictures of different waste items.
