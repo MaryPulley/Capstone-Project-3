@@ -12,7 +12,7 @@ This project aims to develop an image classification model using a convolutional
 
 ## Instructions to Run Code
 
-To use User Interface Application - "Waste Classifier App"
+***To use User Interface Application - "Waste Classifier App"***
 Download the following files to utilize with the ***UI_code_final.ipynb notebook***
 
 garbage_classification.csv
