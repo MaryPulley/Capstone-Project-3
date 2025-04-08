@@ -59,19 +59,27 @@ This dataset contains images of various types of garbage, such as paper, plastic
 
 1. **Preprocessing:** Resize and normalize the images to a consistent format.
 2. **Model Initialization:** Instantiate the chosen model with appropriate hyperparameters.
-3. **Training:** Train the model on the training dataset using an optimizer (e.g., Adam, SGD) and a loss function (e.g., categorical cross-entropy). Monitor the training progress and adjust hyperparameters as needed.
-4. **Validation:** Evaluate the model's performance on the validation set during training to prevent overfitting and ensure generalization.
+3. **Training:** The model was trained for 10 epochs with a batch size of 32 using an optimizer and categorical cross-entropy loss. Training accuracy remained high throughout, ranging from 97.2% to 98.7%.
+4. **Validation:** The model’s validation accuracy peaked at 89.8% in the final epoch, indicating strong generalization and effective overfitting control.
 
 ![image](https://github.com/user-attachments/assets/55acf8e1-13bc-42d1-91a5-509c5efb3861)
 
 
 ## Model Testing
 
-1. **Evaluation:** Evaluate the trained model on the testing dataset to assess its performance on unseen data.
-2. **Metrics:** Use appropriate metrics like accuracy, precision, recall, and F1-score to measure the model's performance.
-3. **Analysis:** Analyze the results and identify areas for improvement.
+1.⏱️ Test time: Approximately 13 seconds, with an average of 227ms per step.
+
+2.📉 Test loss: 0.6613 — indicating relatively low error on unseen data.
+
+3.✅ Test accuracy: 88.03%, showing strong performance on generalizing to new samples.
+
+4.📊 Compiled metric (accuracy): 89.79%, consistent with the final validation accuracy during training.
+
 
 ![image](https://github.com/user-attachments/assets/5daad6e9-e863-45ab-8888-9f354e105578)
+
+![image](https://github.com/user-attachments/assets/d8611443-1387-4ff6-9e37-e5cf29731ae3)
+
 
 ## Usage
 
