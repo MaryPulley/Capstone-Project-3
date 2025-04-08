@@ -10,6 +10,9 @@ from PIL import Image
 from sklearn.preprocessing import OneHotEncoder
 from imblearn.under_sampling import RandomUnderSampler
 
+# package for dowloading files from google drive
+import gdown
+
 # encoded column names NOTE: if not run, its the default assumption
 encoded_y_cols = [
     "battery", "biological", "brown-glass", "cardboard", "clothes",
@@ -57,7 +60,7 @@ def get_X_y(percent=1, undersample=True, random_state=42, path=None, encoded_y=T
         df = df[df["classification"] != "biological"]
 
         # combining paper and cardboard
-        df.loc[df["classification"].str.contains("paper"), "classification"] = "paper"
+        # df.loc[df["classification"].str.contains("cardboard"), "classification"] = "paper"
 
         # combinging shoes and clothes
         df.loc[df["classification"].str.contains("shoes"), "classification"] = "clothes"
@@ -125,8 +128,26 @@ def get_prediction(image_path=None, model=None, target_size=(150, 150)) -> str:
         str: predicted class for the image.
     """
     if model is None:
-        with open("garbage_recycle_model.pkl", "rb") as f:
-            model = pkl.load(f)
+        default_model_path = "garbage_recycle_model.pkl"
+        # try to download the better model from google drive
+        try:
+            # if model downloaded, load it
+            if os.path.exists(default_model_path):
+                with open(default_model_path, "rb") as f:
+                    model = pkl.load(f)
+
+            # otherwise download it
+            else:
+                file_id = "1nTuoMsB36cNLTOUHeHmDjbshVixsWZDs"
+                url = f'https://drive.google.com/uc?id={file_id}'
+                gdown.download(url, default_model_path, quiet=False)
+                with open(default_model_path, "rb") as f:
+                    model = pkl.load(f)
+            
+        # if cant download better model, load the initial (worse) model
+        except:
+            with open("initial_model.pkl", "rb") as f:
+                model = pkl.load(f)
 
     if model is None:
         raise ValueError("Model must be provided for prediction.")
