@@ -128,19 +128,19 @@ def get_prediction(image_path=None, model=None, target_size=(150, 150)) -> str:
         str: predicted class for the image.
     """
     if model is None:
+        default_model_path = "garbage_recycle_model.pkl"
         # try to download the better model from google drive
         try:
             # if model downloaded, load it
-            if os.path.exists("vikram_90accuracy_model.pkl"):
-                with open("vikram_90accuracy_model.pkl", "rb") as f:
+            if os.path.exists(default_model_path):
+                with open(default_model_path, "rb") as f:
                     model = pkl.load(f)
 
             # otherwise download it
             else:
                 file_id = "1nTuoMsB36cNLTOUHeHmDjbshVixsWZDs"
                 url = f'https://drive.google.com/uc?id={file_id}'
-                output = "vikram_90accuracy_model.pkl"
-                gdown.download(url, output, quiet=False)
+                gdown.download(url, default_model_path, quiet=False)
                 with open(output, "rb") as f:
                     model = pkl.load(f)
             
@@ -154,7 +154,7 @@ def get_prediction(image_path=None, model=None, target_size=(150, 150)) -> str:
     if image_path is None:
         raise ValueError("Image path must be provided for prediction.")
 
-    X_input = get_X([image_path], target_size=target_size)
+    X_input = get_X([image_path], target_size=target_size, grayscale=False)
     output = model.predict(X_input)
     predicted_class = np.argmax(output[0])
     global encoded_y_cols
