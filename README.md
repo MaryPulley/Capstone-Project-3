@@ -41,7 +41,7 @@ This dataset contains images of various types of garbage, such as paper, plastic
 
 1. **Data Collection:** Gather a dataset of images containing various types of garbage, labeled as "recyclable" or "garbage". You can use public datasets or create your own by taking pictures of different waste items.
 2. **Data Cleaning:** Initially, the dataset classified the data into 12 categories.  However, we found it more effcient to reduce the number of categories to 8 by combining a few that were closely related. 
-3. **Data Augmentation:** Apply data augmentation techniques (e.g., rotation, flipping, scaling) 
+3. **Data Augmentation:** Apply data augmentation techniques (e.g., rotation, flipping, scaling,re-sizing) 
 4. **Data Splitting:** Divide the dataset into training, validation, and testing sets. This allows for proper model evaluation and prevents overfitting.
 
 ## Model Selection
