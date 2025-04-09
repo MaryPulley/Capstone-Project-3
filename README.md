@@ -23,7 +23,7 @@ Folder EXAMPLE IMAGES
 
 ## Package Install
 
-1. bash pip install tensorflow
+1. pip install tensorflow 
 2. pip install pandas
 3. pip install Pillow
 4. pip install scikit-learn
