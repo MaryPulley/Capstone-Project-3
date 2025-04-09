@@ -47,7 +47,7 @@ This dataset contains images of various types of garbage, such as paper, plastic
 ## Model Selection
 
 - **Convolutional Neural Networks (CNNs):** CNNs are widely used for image classification tasks and have proven to be effective in identifying patterns and features in images. Pre-trained models like ResNet, Inception, or MobileNet can be used as a starting point or fine-tuned for this specific task.
-- Specific  CNN Model (Sequential model): Is the model we used with multiple convolutional layers, pooling layers, and fully connected layers.  The model is trained using the Adam optimizer and categorical cross-entropy loss function.
+- Specific CNN Model (Sequential model): Is the model we used with multiple convolutional layers, pooling layers, and fully connected layers.  The model is trained using the Adam optimizer and categorical cross-entropy loss function.
 
 ![image](https://github.com/user-attachments/assets/c611349b-0058-4803-8da0-32ea5bcf877b)
 
